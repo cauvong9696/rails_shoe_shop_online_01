@@ -1,5 +1,5 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 /* forms */
 
@@ -228,4 +228,22 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+td {
+  max-width: 150px;
+  word-wrap: break-word;
+
+  img {
+    max-width: 145px;
+    padding-right: 5px;
+  }
+}
+
+.smalled {
+  width: 10px;
+}
+
+block {
+  display: inline-block;
 }

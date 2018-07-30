@@ -1,0 +1,32 @@
+<%= form_for @user, url: params_present(params[:id]), html: {multipart: true} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+
+  <%= f.label :name, t("name") %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :username, t("username") %>
+  <%= f.text_field :username, class: "form-control" %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email, class: "form-control" %>
+
+  <%= f.label :birth_date, t("birthday") %>
+  <%= f.text_field :birth_date, class: "form-control" %>
+
+  <%= f.label :phone, t("phone") %>
+  <%= f.text_field :phone, class: "form-control" %>
+
+  <%= f.label :address, t("address") %>
+  <%= f.text_field :address, class: "form-control" %>
+
+  <%= f.text_field :activated, class: "hide", value: "1" %>
+
+  <%= f.label :picture, t("img_url") %>
+  <%= f.file_field :picture, accept: Settings.accept, class: "form-control" %>
+
+  <%= f.label :role, t("role"), class: "block" %>
+  <%= f.radio_button :role, "admin", :checked => false, class: "smalled block" %><%= t "admin" %>
+  <%= f.radio_button :role, "user", :checked => true, class: "smalled block" %><%= t "user" %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

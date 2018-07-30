@@ -1,9 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :load_user, only: [:show, :edit, :update]
-
-  def index; end
 
   def show
     redirect_to(root_url) && return unless @user
@@ -14,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new user_params
+    @user = User.new user_params.merge(role: "user")
     if @user.save
       @user.send_activation_email
       flash[:info] = t("require_check_email")
@@ -36,20 +34,14 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit :name, :username, :birth_date, :phone,
-      :email, :password, :password_confirmation, :address, :picture, :role
-  end
 
   def correct_user
     @user = User.find_by id: params[:id]
     redirect_to root_url unless current_user?(@user)
   end
 
-  def load_user
-    @user = User.find_by id: params[:id]
-    return if @user
-    flash[:danger] = t("something")
-    redirect_to root_path
+  def user_params
+    params.require(:user).permit :name, :username, :birth_date, :phone,
+      :email, :password, :password_confirmation, :address, :picture
   end
 end

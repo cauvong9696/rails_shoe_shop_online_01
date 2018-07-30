@@ -1,12 +1,13 @@
 <% provide :title, t("user_management") %>
+<% provide :button_text, t("page_edit") %>
 <h1><%= t("user_management") %></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for @user, html: {multipart: true} do |f| %>
+    <%= form_for @user, url: admin_user_path, html: {multipart: true} do |f| %>
 
       <%= f.label :name, t("name") %>
-      <%= f.email_field :name, class: "form-control" %>
+      <%= f.text_field :name, class: "form-control" %>
 
       <%= f.label :username, t("username") %>
       <%= f.text_field :username, class: "form-control" %>
@@ -29,9 +30,18 @@
       <%= f.label :password_confirmation, t("cf_pass") %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
+      <%= f.text_field :activated, class: "hide", value: "1" %>
+
+      <%= f.label :picture, t("img_url") %>
       <%= f.file_field :picture, accept: Settings.accept, class: "form-control" %>
 
-      <%= f.submit t("page_edit"), class: "btn btn-primary" %>
+      <%= f.label :role, t("role") %>
+      <div></div>
+      <%= f.radio_button :role, "admin", :checked => false, class: "smalled" %><%= t "admin" %>
+      <div></div>
+      <%= f.radio_button :role, "user", :checked => true, class: "smalled" %><%= t "user" %>
+
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

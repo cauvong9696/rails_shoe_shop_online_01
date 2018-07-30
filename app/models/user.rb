@@ -17,6 +17,8 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   validate :picture_size
 
+  scope :user, ->(user){where role: user}
+
   class << self
     def digest string
       cost = BCrypt::Engine::MIN_COST if ActiveModel::SecurePassword.min_cost

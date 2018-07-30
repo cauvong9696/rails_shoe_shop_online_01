@@ -26,6 +26,9 @@
             </li>
           </ul>
         </li>
+        <% if current_user.admin? %>
+        <li><%= link_to t("admin"), admin_path %></li>
+        <% end %>
       <% else %>
         <li><%= link_to t("login"), login_path %></li>
         <li><%= link_to t("btn_sign_up_now"), signup_path %></li>

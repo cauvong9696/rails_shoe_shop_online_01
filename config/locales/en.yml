@@ -7,7 +7,7 @@ en:
   cf_pass: "Confirmation Password"
   remember_me: "Remember me"
   register: "Register"
-  create: "Create new account"
+  create: "Create new"
   all_shoes: "All shoes"
   category: "Category Shoes"
   language: "Language"
@@ -61,7 +61,7 @@ en:
   all_user: "All user"
   del_user: "Delete user"
   require_login: "Please login"
-  question_before_del_user: "You sure?"
+  question_before_del: "You sure?"
   account: "Account"
   require_check_email: "Please check your email to activate your account."
   account_activated: "Account activated!"
@@ -97,6 +97,8 @@ en:
   role: "Role"
   username: "Username "
   address: "Address "
+  password: "Password"
+  cf_pass: "Confirmation Password"
   date_participation: "Date of participation "
   created_at: "Created at "
   upload: "Upload"
@@ -105,7 +107,7 @@ en:
 
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%a, %d %b %Y %H:%M:%S"
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
 
@@ -135,8 +137,13 @@ en:
             password_confirmation:
               confirmation: "Password doesn't match"
   admin: "Admin"
+  user: "User"
   access_denied: "You are not Admin"
   user_management: "Users Management"
   category_management: "Categories Management"
   shoes_management: "Products Management"
   add: "Add"
+  pass_fail: "Password doesn't match"
+  add_success: "Successfully added"
+  old_pass: "Old Password"
+  input: "Input User's password"

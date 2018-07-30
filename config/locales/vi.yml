@@ -107,7 +107,7 @@ vi:
 
   time:
     formats:
-      default: "Ngày %d/%m/%Y %H:%M:%S %z"
+      default: "Ngày %d/%m/%Y %H:%M:%S"
       long: "%d %B %Y %H:%M"
       short: "%d %b %H:%M"
 
@@ -143,3 +143,7 @@ vi:
   shoes_management: "Quản lý sản phẩm"
   fail: "Bạn không phải admin"
   add: "Thêm"
+  pass_fail: "Mật khẩu không khớp"
+  add_success: "Thêm thành công"
+  old_pass: "Mật khẩu cũ"
+  input: "Nhập mập khẩu của người dùng này"

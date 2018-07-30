@@ -1,33 +1,87 @@
 <% provide :title, t("user_management") %>
 <h1><%= t("user_management") %></h1>
-<%= link_to t("add"), "#", class: "btn btn-sm btn-primary" %>
-<table class="table table-stripped">
-  <thead>
-    <th><%= t "id" %></th>
-    <th><%= t "name" %></th>
-    <th><%= t "birthday" %></th>
-    <th><%= t "email" %></th>
-    <th><%= t "phone" %></th>
-    <th><%= t "role" %></th>
-    <th><%= t "username" %></th>
-    <th><%= t "address" %></th>
-    <th><%= t "date_participation" %></th>
-    <th></th>
-    <th></th>
-  </thead>
-  <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td><%= link_to t("page_edit"), "#", class: "btn btn-sm btn-success" %></td>
-      <td><%= link_to t("delete"), "#", class: "btn btn-sm btn-success" %></td>
-    </tr>
-  </tbody>
-</table>
+
+<ul class="nav nav-tabs" id="my_tabs">
+  <li class="active"><a data-toggle="tab" href="#user">User</a></li>
+  <li><a data-toggle="tab" href="#admin">Admin</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="user" class="tab-pane fade in active">
+    <table class="table table-stripped">
+      <thead>
+        <th><%= t "id" %></th>
+        <th><%= t "img_url" %></th>
+        <th><%= t "name" %></th>
+        <th><%= t "birthday" %></th>
+        <th><%= t "email" %></th>
+        <th><%= t "phone" %></th>
+        <th><%= t "role" %></th>
+        <th><%= t "username" %></th>
+        <th><%= t "address" %></th>
+        <th><%= t "date_participation" %></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= image_tag user.picture.url if user.picture? %></td>
+          <td><%= user.name %></td>
+          <td><%= user.birth_date %></td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= user.role %></td>
+          <td><%= user.username %></td>
+          <td><%= user.address %></td>
+          <td><%= l(user.created_at, format: :default) %></td>
+          <td><%= link_to t("delete"), admin_user_path(user), method: :delete,
+            data: { confirm: t("question_before_del") },
+            class: "btn btn-sm btn-success" %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+        <%= paginate @users, theme: "twitter-bootstrap-3", param_name: "user_page" %>
+  </div>
+
+  <div id="admin" class="tab-pane fade">
+    <%= link_to t("add"), new_admin_user_path, class: "btn btn-sm btn-primary" %>
+    <table class="table table-stripped">
+      <thead>
+        <th><%= t "id" %></th>
+        <th><%= t "img_url" %></th>
+        <th><%= t "name" %></th>
+        <th><%= t "birthday" %></th>
+        <th><%= t "email" %></th>
+        <th><%= t "phone" %></th>
+        <th><%= t "role" %></th>
+        <th><%= t "username" %></th>
+        <th><%= t "address" %></th>
+        <th><%= t "date_participation" %></th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @admins.each do |admin| %>
+        <tr>
+          <td><%= admin.id %></td>
+          <td><%= image_tag admin.picture.url if admin.picture? %></td>
+          <td><%= admin.name %></td>
+          <td><%= admin.birth_date %></td>
+          <td><%= admin.email %></td>
+          <td><%= admin.phone %></td>
+          <td><%= admin.role %></td>
+          <td><%= admin.username %></td>
+          <td><%= admin.address %></td>
+          <td><%= l(admin.created_at, format: :default) %></td>
+          <td><%= link_to t("delete"), admin_user_path(admin), method: :delete,
+            data: { confirm: t("question_before_del") },
+            class: "btn btn-sm btn-success" %></td>
+        </tr>
+        <% end -%>
+      </tbody>
+    </table>
+        <%= paginate @admins, theme: "twitter-bootstrap-3", param_name: "admin_page" %>
+  </div>
+</div>
